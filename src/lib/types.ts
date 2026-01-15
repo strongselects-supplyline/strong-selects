@@ -18,4 +18,4 @@ export interface CartItem {
     notes: string;
 }
 
-export type SortOption = "price-asc" | "price-desc" | "newest" | "tier-asc";
+export type SortOption = "newest" | "price-asc" | "price-desc" | "tier-asc" | "alpha-asc";

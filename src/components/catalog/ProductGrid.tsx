@@ -70,6 +70,8 @@ export function ProductGrid() {
     // Sorting
     const sortedCatalog = [...filteredCatalog].sort((a, b) => {
         switch (sortBy) {
+            case "alpha-asc":
+                return a.strain_name.localeCompare(b.strain_name);
             case "price-asc":
                 return (a.price_oz || 0) - (b.price_oz || 0);
             case "price-desc":

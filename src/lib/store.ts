@@ -55,7 +55,7 @@ export const useStore = create<AppState>((set) => ({
             return { filters: { ...state.filters, [key]: next } };
         }),
 
-    sortBy: "price-asc",
+    sortBy: "alpha-asc",
     setSortBy: (option) => set({ sortBy: option }),
 
     cart: [],

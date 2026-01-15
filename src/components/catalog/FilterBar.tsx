@@ -37,41 +37,12 @@ export function FilterBar() {
                     );
                 })}
 
-                <div className="w-px h-6 bg-white/10 mx-2" />
-
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">Sort</span>
-
-                {/* Sort Options */}
-                <button
-                    onClick={() => setSortBy("price-asc")}
-                    className={cn(
-                        "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border",
-                        sortBy === "price-asc"
-                            ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
-                            : "bg-secondary text-muted-foreground border-transparent hover:bg-secondary/80 hover:text-foreground"
-                    )}
-                >
-                    Price Low
-                </button>
-                <button
-                    onClick={() => setSortBy("price-desc")}
-                    className={cn(
-                        "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border",
-                        sortBy === "price-desc"
-                            ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
-                            : "bg-secondary text-muted-foreground border-transparent hover:bg-secondary/80 hover:text-foreground"
-                    )}
-                >
-                    Price High
-                </button>
-
                 {/* Reset */}
                 {(filters.type.length > 0 || filters.search) && (
                     <button
                         onClick={() => {
                             setFilter("type", []);
                             setFilter("search", "");
-                            setSortBy("price-asc");
                         }}
                         className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
                     >
