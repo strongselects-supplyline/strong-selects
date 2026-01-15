@@ -3,7 +3,7 @@
 import { useStore } from "@/lib/store";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, getDirectImageUrl } from "@/lib/utils";
 import { X, ExternalLink, Plus, Minus } from "lucide-react";
 import { useState, useEffect } from "react";
 import { CartItem } from "@/lib/types";
@@ -34,9 +34,10 @@ export function ProductDrawer() {
     const product = selectedProduct;
 
     // Image Gallery Logic
-    const images = (product.media_photo_urls || "").split(",").filter(Boolean);
-    if (product.photo_url) images.unshift(product.photo_url);
-    const displayImages = images.length > 0 ? images : null;
+    const rawImages = (product.media_photo_urls || "").split(",").map(s => s.trim()).filter(Boolean);
+    if (product.photo_url) rawImages.unshift(product.photo_url);
+
+    const displayImages = rawImages.map(url => getDirectImageUrl(url)).filter(Boolean) as string[];
 
     const handleAddToRequest = () => {
         const price =
@@ -76,7 +77,7 @@ export function ProductDrawer() {
 
                 {/* Hero Image / Gallery */}
                 <div className="relative aspect-video w-full bg-black">
-                    {displayImages ? (
+                    {displayImages.length > 0 ? (
                         <Image
                             src={displayImages[0]}
                             alt={product.strain_name}

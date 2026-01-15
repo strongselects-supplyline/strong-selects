@@ -2,7 +2,7 @@
 
 import { Product } from "@/lib/schema";
 import { useStore } from "@/lib/store";
-import { cn } from "@/lib/utils";
+import { cn, getDirectImageUrl } from "@/lib/utils";
 import Image from "next/image";
 
 interface ProductCardProps {
@@ -24,7 +24,8 @@ export function ProductCard({ product }: ProductCardProps) {
                 "AVAILABLE";
 
     // Image Logic
-    const mainImage = product.photo_url || product.media_photo_urls?.split(",")[0] || null;
+    const rawImage = product.photo_url || product.media_photo_urls?.split(",")[0];
+    const mainImage = getDirectImageUrl(rawImage);
 
     return (
         <div

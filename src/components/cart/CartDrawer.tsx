@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { X, Trash2, Send } from "lucide-react";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { getDirectImageUrl } from "@/lib/utils";
 
 export function CartDrawer() {
     const { isCartOpen, toggleCart, cart, removeFromCart, updateCartItem, clearCart } = useStore();
@@ -136,9 +137,9 @@ TOTAL ESTIMATE: $${totalEstimate}
                                 <div key={idx} className="bg-white/5 rounded-lg p-3 border border-white/5 flex gap-3 group">
                                     {/* Tiny Image */}
                                     <div className="relative w-12 h-12 bg-black rounded overflow-hidden shrink-0 mt-1">
-                                        {(item.product.photo_url || item.product.media_photo_urls?.split(",")[0]) && (
+                                        {getDirectImageUrl(item.product.photo_url || item.product.media_photo_urls?.split(",")[0]) && (
                                             <img
-                                                src={item.product.photo_url || item.product.media_photo_urls?.split(",")[0]}
+                                                src={getDirectImageUrl(item.product.photo_url || item.product.media_photo_urls?.split(",")[0]) || ""}
                                                 className="object-cover w-full h-full"
                                             />
                                         )}
