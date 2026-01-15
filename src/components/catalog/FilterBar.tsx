@@ -28,8 +28,8 @@ export function FilterBar() {
                             className={cn(
                                 "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border",
                                 isActive
-                                    ? "bg-foreground text-background border-foreground shadow-md"
-                                    : "bg-secondary/50 text-muted-foreground border-transparent hover:bg-secondary hover:text-foreground"
+                                    ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
+                                    : "bg-secondary text-muted-foreground border-transparent hover:bg-secondary/80 hover:text-foreground"
                             )}
                         >
                             {type}
@@ -37,7 +37,7 @@ export function FilterBar() {
                     );
                 })}
 
-                <div className="w-px h-6 bg-border mx-2" />
+                <div className="w-px h-6 bg-white/10 mx-2" />
 
                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">Sort</span>
 
@@ -47,8 +47,8 @@ export function FilterBar() {
                     className={cn(
                         "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border",
                         sortBy === "price-asc"
-                            ? "bg-foreground text-background border-foreground shadow-md"
-                            : "bg-secondary/50 text-muted-foreground border-transparent hover:bg-secondary hover:text-foreground"
+                            ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
+                            : "bg-secondary text-muted-foreground border-transparent hover:bg-secondary/80 hover:text-foreground"
                     )}
                 >
                     Price Low
@@ -58,8 +58,8 @@ export function FilterBar() {
                     className={cn(
                         "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border",
                         sortBy === "price-desc"
-                            ? "bg-foreground text-background border-foreground shadow-md"
-                            : "bg-secondary/50 text-muted-foreground border-transparent hover:bg-secondary hover:text-foreground"
+                            ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
+                            : "bg-secondary text-muted-foreground border-transparent hover:bg-secondary/80 hover:text-foreground"
                     )}
                 >
                     Price High

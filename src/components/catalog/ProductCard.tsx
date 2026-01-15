@@ -50,7 +50,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 )}
 
                 {/* Tier Badge */}
-                <div className="absolute top-2 left-2 px-2 py-1 rounded bg-white/90 backdrop-blur border border-black/5 text-[10px] font-bold tracking-wider text-black shadow-sm">
+                <div className="absolute top-2 left-2 px-2 py-1 rounded bg-black/60 backdrop-blur border border-white/10 text-[10px] font-bold tracking-wider text-white shadow-sm">
                     {product.tier}
                 </div>
 
