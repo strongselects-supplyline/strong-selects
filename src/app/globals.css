@@ -109,4 +109,12 @@
     /* Obsidian Black Force */
     color: #fafafa !important;
   }
+
+  /* Mobile performance: Remove heavy effects */
+  @media (max-width: 768px) {
+    * {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+  }
 }

@@ -27,8 +27,13 @@ export function ProductGrid() {
         init();
     }, [setCatalog, setIsLoading]);
 
+    // Detect mobile for aggressive performance optimization
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const initialLoadCount = isMobile ? 8 : 16;
+    const loadMoreCount = isMobile ? 8 : 16;
+
     // Pagination State
-    const [visibleCount, setVisibleCount] = useState(16);
+    const [visibleCount, setVisibleCount] = useState(initialLoadCount);
 
     // Filter Logic... same as before...
     const filteredCatalog = catalog.filter(product => {
@@ -86,8 +91,8 @@ export function ProductGrid() {
 
     // Reset pagination when filters change
     useEffect(() => {
-        setVisibleCount(16);
-    }, [filters, sortBy]);
+        setVisibleCount(initialLoadCount);
+    }, [filters, sortBy, initialLoadCount]);
 
     if (isLoading) {
         return (
@@ -121,7 +126,7 @@ export function ProductGrid() {
             {hasMore && (
                 <div className="mt-12 flex justify-center">
                     <button
-                        onClick={() => setVisibleCount(prev => prev + 16)}
+                        onClick={() => setVisibleCount(prev => prev + loadMoreCount)}
                         className="px-8 py-3 bg-secondary hover:bg-primary/20 hover:text-primary text-foreground border border-border rounded-full text-xs font-bold uppercase tracking-widest transition-all"
                     >
                         Load More Stamps ({sortedCatalog.length - visibleCount} remaining)
