@@ -5,7 +5,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { hostname: "images.unsplash.com" },
       { hostname: "drive.google.com" },
-      { hostname: "lh3.googleusercontent.com" }, // Google Photos usually
+      { hostname: "lh3.googleusercontent.com" },
+      { hostname: "www.dropbox.com" },
+      { hostname: "dl.dropboxusercontent.com" },
     ],
   },
 };

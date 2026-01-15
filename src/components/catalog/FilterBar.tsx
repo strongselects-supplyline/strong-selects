@@ -14,7 +14,7 @@ export function FilterBar() {
     const { filters, toggleFilter, setFilter } = useStore();
 
     return (
-        <div className="w-full overflow-x-auto py-4 no-scrollbar border-b border-white/5 bg-black/50 backdrop-blur-sm sticky top-16 z-40">
+        <div className="w-full overflow-x-auto py-4 no-scrollbar border-b border-white/5 bg-background/80 backdrop-blur-sm sticky top-16 z-40">
             <div className="container mx-auto px-4 flex items-center gap-2 min-w-max">
                 <span className="text-xs text-white/40 font-medium mr-2">FILTERS</span>
 
@@ -58,7 +58,7 @@ export function FilterBar() {
                     );
                 })}
 
-                <div className="w-px h-6 bg-white/10 mx-2" />
+                <div className="w-px h-6 bg-border mx-2" />
 
                 {/* Reset */}
                 {(filters.tier.length > 0 || filters.type.length > 0 || filters.search) && (
@@ -68,7 +68,7 @@ export function FilterBar() {
                             setFilter("type", []);
                             setFilter("search", "");
                         }}
-                        className="ml-auto flex items-center gap-1 text-[10px] text-white/40 hover:text-white transition-colors"
+                        className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
                     >
                         <X className="w-3 h-3" /> CLEAR
                     </button>

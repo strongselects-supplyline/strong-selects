@@ -29,5 +29,11 @@ export function getDirectImageUrl(url?: string): string | null {
     }
   }
 
+  // Handle Dropbox links
+  // Format: https://www.dropbox.com/s/ID/file.jpg?dl=0 -> https://dl.dropboxusercontent.com/s/ID/file.jpg
+  if (url.includes("dropbox.com")) {
+    return url.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace("?dl=0", "");
+  }
+
   return url;
 }

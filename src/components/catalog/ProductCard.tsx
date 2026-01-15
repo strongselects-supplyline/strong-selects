@@ -30,10 +30,10 @@ export function ProductCard({ product }: ProductCardProps) {
     return (
         <div
             onClick={() => openProductDrawer(product)}
-            className="group relative flex flex-col bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+            className="group relative flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
         >
             {/* Image Area */}
-            <div className="relative aspect-square w-full bg-black/50 overflow-hidden">
+            <div className="relative aspect-square w-full bg-muted overflow-hidden">
                 {mainImage ? (
                     <Image
                         src={mainImage}
@@ -42,13 +42,13 @@ export function ProductCard({ product }: ProductCardProps) {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                 ) : (
-                    <div className="flex items-center justify-center w-full h-full text-white/20 text-xs uppercase tracking-widest font-bold">
+                    <div className="flex items-center justify-center w-full h-full text-muted-foreground/50 text-xs uppercase tracking-widest font-bold">
                         No Image
                     </div>
                 )}
 
                 {/* Tier Badge */}
-                <div className="absolute top-2 left-2 px-2 py-1 rounded bg-black/80 backdrop-blur-md border border-white/10 text-[10px] font-bold tracking-wider text-white">
+                <div className="absolute top-2 left-2 px-2 py-1 rounded bg-background/80 backdrop-blur-md border border-border text-[10px] font-bold tracking-wider text-foreground">
                     {product.tier}
                 </div>
 
@@ -64,31 +64,31 @@ export function ProductCard({ product }: ProductCardProps) {
             {/* Info Area */}
             <div className="p-4 flex-1 flex flex-col">
                 <div className="flex justify-between items-start gap-2 mb-1">
-                    <h3 className="font-serif text-lg text-white leading-tight">{product.strain_name}</h3>
+                    <h3 className="font-serif text-lg text-foreground leading-tight">{product.strain_name}</h3>
                     {product.type && (
-                        <span className="shrink-0 text-[10px] px-1.5 py-0.5 rounded border border-white/10 text-white/60 uppercase">
+                        <span className="shrink-0 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground uppercase">
                             {product.type}
                         </span>
                     )}
                 </div>
 
-                <div className="text-xs text-white/60 mb-4 line-clamp-2">
+                <div className="text-xs text-muted-foreground mb-4 line-clamp-2">
                     {product.ratio && <span className="mr-2">{product.ratio}</span>}
                     {product.lineage}
                 </div>
 
-                <div className="mt-auto grid grid-cols-3 gap-2 border-t border-white/10 pt-3">
+                <div className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3">
                     <div className="text-center">
-                        <div className="text-[10px] text-white/40 uppercase tracking-wider">Per Oz</div>
-                        <div className="text-sm font-medium text-white">${product.price_oz || "--"}</div>
+                        <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Per Oz</div>
+                        <div className="text-sm font-medium text-foreground">${product.price_oz || "--"}</div>
                     </div>
-                    <div className="text-center border-l border-white/10">
-                        <div className="text-[10px] text-white/40 uppercase tracking-wider">QP</div>
-                        <div className="text-sm font-medium text-white">${product.price_qp || "--"}</div>
+                    <div className="text-center border-l border-border">
+                        <div className="text-[10px] text-muted-foreground uppercase tracking-wider">QP</div>
+                        <div className="text-sm font-medium text-foreground">${product.price_qp || "--"}</div>
                     </div>
-                    <div className="text-center border-l border-white/10">
-                        <div className="text-[10px] text-white/40 uppercase tracking-wider">LB</div>
-                        <div className="text-sm font-medium text-white">${product.price_lb || "--"}</div>
+                    <div className="text-center border-l border-border">
+                        <div className="text-[10px] text-muted-foreground uppercase tracking-wider">LB</div>
+                        <div className="text-sm font-medium text-foreground">${product.price_lb || "--"}</div>
                     </div>
                 </div>
             </div>
