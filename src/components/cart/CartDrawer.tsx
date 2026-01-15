@@ -2,7 +2,7 @@
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useStore } from "@/lib/store";
-import { Minus, Plus, Trash2, Send, X } from "lucide-react";
+import { Minus, Plus, Trash2, Send } from "lucide-react";
 import { getDirectImageUrl } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
@@ -13,6 +13,7 @@ export function CartDrawer() {
     const [step, setStep] = useState<"cart" | "form">("cart");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<"idle" | "success">("idle");
+    const [error, setError] = useState<string | null>(null);
 
     const [formData, setFormData] = useState({
         businessName: "",
@@ -24,7 +25,6 @@ export function CartDrawer() {
 
     const totalCost = cart.reduce((sum, item) => {
         const product = item.product;
-        // Logic to determine price based on unit
         const price = item.unit === "lb" ? product.price_lb : item.unit === "qp" ? product.price_qp : product.price_oz;
         return sum + (price || 0) * item.quantity;
     }, 0);
@@ -32,27 +32,8 @@ export function CartDrawer() {
     const handleRequest = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setError(null);
 
-        const summary = `
-STRONG SELECTS ORDER REQUEST
----------------------------
-Business: ${formData.businessName}
-Contact: ${formData.contactName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-
-ORDER ITEMS:
-${cart.map(item => `- ${item.product.strain_name} (${item.product.type})
-  Qty: ${item.quantity} ${item.unit}
-  Price: $${item.unit === "lb" ? item.product.price_lb : item.unit === "qp" ? item.product.price_qp : item.product.price_oz}
-`).join("\n")}
-
-Approx Total: $${totalCost}
-
-Notes: ${formData.notes}
-        `.trim();
-
-        // Submit to Google Sheets via API
         try {
             const res = await fetch("/api/submit-request", {
                 method: "POST",
@@ -70,7 +51,6 @@ Notes: ${formData.notes}
 
             if (res.ok) {
                 setSubmitStatus("success");
-                // Clear cart after success
                 setTimeout(() => {
                     useStore.getState().clearCart();
                     toggleCart(false);
@@ -84,7 +64,7 @@ Notes: ${formData.notes}
             }
         } catch (error: any) {
             console.error("Submission failed:", error);
-            alert(`Failed to submit: ${error.message}. (Status: final-fix). Please check if the Google Sheet is shared with the service account.`);
+            setError(error.message);
         } finally {
             setIsSubmitting(false);
         }
@@ -243,6 +223,11 @@ Notes: ${formData.notes}
                                             placeholder="Delivery preference, specific batch requests, etc."
                                         />
                                     </div>
+                                    {error && (
+                                        <div className="p-3 bg-red-500/10 border border-red-500/20 rounded text-red-500 text-[10px] text-center uppercase tracking-widest font-bold">
+                                            {error}
+                                        </div>
+                                    )}
                                 </form>
                             )}
                         </>

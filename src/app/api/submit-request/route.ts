@@ -6,48 +6,23 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { businessName, contactName, email, phone, cart, notes, total } = body;
 
-        // 1. SMART SEARCH: Find the REAL service account email
-        // We look through EVERY variable for one that contains "gserviceaccount.com"
-        const allEnv = process.env;
-        const serviceEmail = Object.values(allEnv).find(val =>
-            val?.includes("gserviceaccount.com")
-        );
+        const sheetId = (process.env.GOOGLE_SHEET_ID || process.env.NEXT_PUBLIC_GOOGLE_SHEET_ID)?.trim();
+        const serviceEmail = (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || process.env.NEXT_PUBLIC_GOOGLE_SERVICE_ACCOUNT_EMAIL)?.trim();
+        const privateKey = (process.env.GOOGLE_PRIVATE_KEY || process.env.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY)?.replace(/\\n/g, "\n")?.trim();
 
-        const sheetId = (
-            allEnv.GOOGLE_SHEET_ID ||
-            allEnv.NEXT_PUBLIC_GOOGLE_SHEET_ID ||
-            allEnv.SHEET_ID
-        )?.trim();
-
-        const privateKey = (
-            allEnv.GOOGLE_PRIVATE_KEY ||
-            allEnv.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY ||
-            allEnv.PRIVATE_KEY
-        )?.trim();
-
-        if (!serviceEmail || !sheetId || !privateKey) {
-            const missing = [];
-            if (!serviceEmail) missing.push("Service Account Email (@...gserviceaccount.com)");
-            if (!sheetId) missing.push("Sheet ID");
-            if (!privateKey) missing.push("Private Key");
-            throw new Error(`Connection Error: Missing [${missing.join(", ")}]. Check your Vercel variables.`);
+        if (!sheetId || !serviceEmail || !privateKey) {
+            throw new Error("Server configuration incomplete. Check environment variables.");
         }
 
-        const formattedKey = privateKey.replace(/\\n/g, "\n");
-
-        // 2. AUTH & APPEND
         const auth = new google.auth.GoogleAuth({
-            credentials: {
-                client_email: serviceEmail.trim(),
-                private_key: formattedKey
-            },
+            credentials: { client_email: serviceEmail, private_key: privateKey },
             scopes: ["https://www.googleapis.com/auth/spreadsheets"],
         });
 
         const sheets = google.sheets({ version: "v4", auth });
-        const spreadsheetId = sheetId;
 
-        const spreadsheet = await sheets.spreadsheets.get({ spreadsheetId });
+        // Dynamic sheet detection
+        const spreadsheet = await sheets.spreadsheets.get({ spreadsheetId: sheetId });
         const sheetName = spreadsheet.data.sheets?.[0]?.properties?.title || "Sheet1";
 
         const row = [
@@ -58,7 +33,7 @@ export async function POST(request: Request) {
         ];
 
         await sheets.spreadsheets.values.append({
-            spreadsheetId,
+            spreadsheetId: sheetId,
             range: `${sheetName}!A:H`,
             valueInputOption: "USER_ENTERED",
             requestBody: { values: [row] },
@@ -67,9 +42,9 @@ export async function POST(request: Request) {
         return NextResponse.json({ success: true });
 
     } catch (error: any) {
-        console.error("Diagnostic Error:", error.message);
+        console.error("Submission Error:", error.message);
         return NextResponse.json(
-            { error: "Order Error", details: error.message },
+            { error: "Order Submission Failed", details: error.message },
             { status: 500 }
         );
     }
