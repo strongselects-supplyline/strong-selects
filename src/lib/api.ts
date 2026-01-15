@@ -9,8 +9,6 @@ export async function fetchCatalog(): Promise<Product[]> {
             throw new Error("Failed to fetch catalog");
         }
 
-        const data = await res.json();
-
         const rawData = await res.json();
 
         if (!Array.isArray(rawData)) {
@@ -28,7 +26,7 @@ export async function fetchCatalog(): Promise<Product[]> {
                 validProducts.push(result.data);
             } else {
                 // Log the confusing row for debugging (could be sent to a logging service)
-                console.warn(`Row ${index + 1} Invalid:`, result.error.errors[0]?.message, item);
+                console.warn(`Row ${index + 1} Invalid:`, result.error.issues[0]?.message, item);
                 errors.push({ row: index, error: result.error });
             }
         });
