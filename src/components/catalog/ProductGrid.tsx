@@ -62,7 +62,7 @@ export function ProductGrid() {
         if (filters.availability.length > 0) {
             const status =
                 product.live_qty_g <= 0 ? "Out" :
-                    (product.threshold_over_g && product.live_qty_g < product.threshold_over_g) ? "Low" :
+                    product.live_qty_g < 448 ? "Low" :
                         "Available";
             if (!filters.availability.includes(status)) {
                 return false;
