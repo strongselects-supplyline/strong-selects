@@ -41,10 +41,10 @@ export function FilterBar() {
 
                 {/* SALE Filter */}
                 <button
-                    onClick={() => toggleFilter("availability", "Low")}
+                    onClick={() => setFilter("onlySale", !filters.onlySale)}
                     className={cn(
                         "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border flex items-center gap-1",
-                        filters.availability.includes("Low")
+                        filters.onlySale
                             ? "bg-amber-500 text-black border-amber-500 shadow-md shadow-amber-500/20"
                             : "bg-secondary text-amber-500 border-amber-500/30 hover:bg-amber-500/10"
                     )}
@@ -82,11 +82,12 @@ export function FilterBar() {
 
 
                 {/* Reset */}
-                {(filters.type.length > 0 || filters.search) && (
+                {(filters.type.length > 0 || filters.search || filters.onlySale) && (
                     <button
                         onClick={() => {
                             setFilter("type", []);
                             setFilter("search", "");
+                            setFilter("onlySale", false);
                         }}
                         className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
                     >

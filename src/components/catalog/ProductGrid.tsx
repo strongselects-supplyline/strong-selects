@@ -69,6 +69,12 @@ export function ProductGrid() {
             }
         }
 
+        // 5. Only Sale
+        if (filters.onlySale) {
+            const isOnSale = product.live_qty_g > 0 && product.live_qty_g < 448;
+            if (!isOnSale) return false;
+        }
+
         return true;
     });
 

@@ -8,6 +8,7 @@ export interface DashboardFilters {
     type: string[];
     availability: AvailabilityStatus[];
     search: string;
+    onlySale: boolean;
 }
 
 export interface CartItem {

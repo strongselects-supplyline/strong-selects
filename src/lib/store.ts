@@ -44,6 +44,7 @@ export const useStore = create<AppState>((set) => ({
         type: [],
         availability: [],
         search: "",
+        onlySale: false,
     },
     setFilter: (key, value) => set((state) => ({ filters: { ...state.filters, [key]: value } })),
     toggleFilter: (key, value) =>
