@@ -70,13 +70,22 @@ export function ProductCard({ product }: ProductCardProps) {
                     {product.tier}
                 </div>
 
-                {/* Status Badge */}
-                <div className={cn(
-                    "absolute top-2 right-2 px-2 py-1 rounded text-[10px] font-bold tracking-wider shadow-sm",
-                    statusColor
-                )}>
-                    {statusLabel}
-                </div>
+                {/* Status Badge - Only show for LOW/SOLD OUT */}
+                {product.live_qty_g < 448 && (
+                    <div className={cn(
+                        "absolute top-2 right-2 px-2 py-1 rounded text-[10px] font-bold tracking-wider shadow-sm",
+                        statusColor
+                    )}>
+                        {statusLabel}
+                    </div>
+                )}
+
+                {/* 10% OFF Badge for Low Stock */}
+                {product.live_qty_g < 448 && product.live_qty_g > 0 && (
+                    <div className="absolute bottom-2 right-2 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-[11px] font-black tracking-wider shadow-lg animate-pulse">
+                        10% OFF
+                    </div>
+                )}
             </div>
 
             {/* Info Area */}
