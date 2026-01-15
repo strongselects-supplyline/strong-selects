@@ -110,11 +110,11 @@ export function ProductDrawer() {
 
                     {/* Stats Grid */}
                     <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-secondary/20 rounded-lg p-3 border border-border">
+                        <div className="bg-secondary rounded-lg p-3 border border-border/50">
                             <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Total THC</div>
                             <div className="text-xl font-mono text-primary">{product.coa_total_pct || "N/A"}</div>
                         </div>
-                        <div className="bg-secondary/20 rounded-lg p-3 border border-border">
+                        <div className="bg-secondary rounded-lg p-3 border border-border/50">
                             <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Availability</div>
                             <div className="text-xl font-mono text-foreground">{product.live_qty_g > 0 ? "IN STOCK" : "OUT"}</div>
                         </div>
@@ -156,26 +156,26 @@ export function ProductDrawer() {
                     <div>
                         <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-3 block border-b border-border pb-2">Pricing Breakdown</h3>
                         <div className="grid grid-cols-3 gap-2">
-                            <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "oz" ? "bg-primary/20 border-primary" : "bg-card border-border hover:bg-secondary/50")} onClick={() => setUnit("oz")}>
-                                <div className="text-[10px] uppercase text-muted-foreground">Per Oz</div>
-                                <div className="text-lg font-medium text-foreground">${product.price_oz || "--"}</div>
+                            <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "oz" ? "bg-primary/10 border-primary text-primary" : "bg-card border-border hover:bg-secondary")} onClick={() => setUnit("oz")}>
+                                <div className={cn("text-[10px] uppercase", unit === "oz" ? "text-primary/70" : "text-muted-foreground")}>Per Oz</div>
+                                <div className="text-lg font-medium">${product.price_oz || "--"}</div>
                             </div>
-                            <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "qp" ? "bg-primary/20 border-primary" : "bg-card border-border hover:bg-secondary/50")} onClick={() => setUnit("qp")}>
-                                <div className="text-[10px] uppercase text-muted-foreground">QP</div>
-                                <div className="text-lg font-medium text-foreground">${product.price_qp || "--"}</div>
+                            <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "qp" ? "bg-primary/10 border-primary text-primary" : "bg-card border-border hover:bg-secondary")} onClick={() => setUnit("qp")}>
+                                <div className={cn("text-[10px] uppercase", unit === "qp" ? "text-primary/70" : "text-muted-foreground")}>QP</div>
+                                <div className="text-lg font-medium">${product.price_qp || "--"}</div>
                             </div>
-                            <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "lb" ? "bg-primary/20 border-primary" : "bg-card border-border hover:bg-secondary/50")} onClick={() => setUnit("lb")}>
-                                <div className="text-[10px] uppercase text-muted-foreground">LB</div>
-                                <div className="text-lg font-medium text-foreground">${product.price_lb || "--"}</div>
+                            <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "lb" ? "bg-primary/10 border-primary text-primary" : "bg-card border-border hover:bg-secondary")} onClick={() => setUnit("lb")}>
+                                <div className={cn("text-[10px] uppercase", unit === "lb" ? "text-primary/70" : "text-muted-foreground")}>LB</div>
+                                <div className="text-lg font-medium">${product.price_lb || "--"}</div>
                             </div>
                         </div>
                     </div>
 
                     {/* Add to Cart Area */}
-                    <div className="bg-card rounded-xl p-4 border border-border space-y-4">
+                    <div className="bg-secondary/30 rounded-xl p-6 border border-border space-y-4">
                         <div className="flex items-center justify-between">
                             <span className="text-sm font-medium text-foreground">Quantity ({unit})</span>
-                            <div className="flex items-center gap-3 bg-secondary/30 rounded-full px-2 py-1 border border-border">
+                            <div className="flex items-center gap-3 bg-background rounded-full px-2 py-1 border border-border shadow-sm">
                                 <button onClick={() => setQty(Math.max(1, qty - 1))} className="p-1 hover:text-primary text-foreground"><Minus className="w-4 h-4" /></button>
                                 <span className="w-8 text-center font-mono text-foreground">{qty}</span>
                                 <button onClick={() => setQty(qty + 1)} className="p-1 hover:text-primary text-foreground"><Plus className="w-4 h-4" /></button>
@@ -186,7 +186,7 @@ export function ProductDrawer() {
                             <input
                                 type="text"
                                 placeholder="Line notes (optional)"
-                                className="w-full bg-secondary/20 border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:outline-none focus:border-primary/50 placeholder:text-muted-foreground"
+                                className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-muted-foreground"
                                 value={notes}
                                 onChange={(e) => setNotes(e.target.value)}
                             />

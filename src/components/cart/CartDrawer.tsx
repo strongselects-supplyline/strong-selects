@@ -134,9 +134,9 @@ TOTAL ESTIMATE: $${totalEstimate}
                     ) : (
                         <div className="space-y-4">
                             {cart.map((item, idx) => (
-                                <div key={idx} className="bg-card rounded-lg p-3 border border-border flex gap-3 group">
+                                <div key={idx} className="bg-card rounded-lg p-3 border border-border shadow-sm flex gap-3 group">
                                     {/* Tiny Image */}
-                                    <div className="relative w-12 h-12 bg-muted rounded overflow-hidden shrink-0 mt-1">
+                                    <div className="relative w-12 h-12 bg-muted rounded overflow-hidden shrink-0 mt-1 border border-border">
                                         {getDirectImageUrl(item.product.photo_url || item.product.media_photo_urls?.split(",")[0]) && (
                                             <img
                                                 src={getDirectImageUrl(item.product.photo_url || item.product.media_photo_urls?.split(",")[0]) || ""}
@@ -151,11 +151,11 @@ TOTAL ESTIMATE: $${totalEstimate}
                                             <span className="text-xs font-mono text-muted-foreground">${item.price * item.quantity}</span>
                                         </div>
                                         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                                            <span className="bg-secondary px-1.5 rounded">{item.unit.toUpperCase()}</span>
+                                            <span className="bg-secondary px-1.5 rounded text-secondary-foreground">{item.unit.toUpperCase()}</span>
                                             <span>${item.price} ea</span>
                                         </div>
                                         <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-2 bg-secondary/50 rounded px-2 py-0.5 border border-border">
+                                            <div className="flex items-center gap-2 bg-secondary/30 rounded px-2 py-0.5 border border-border">
                                                 <button onClick={() => updateCartItem(idx, { quantity: Math.max(1, item.quantity - 1) })} className="hover:text-primary text-foreground">-</button>
                                                 <span className="text-xs w-4 text-center text-foreground">{item.quantity}</span>
                                                 <button onClick={() => updateCartItem(idx, { quantity: item.quantity + 1 })} className="hover:text-primary text-foreground">+</button>
@@ -175,19 +175,19 @@ TOTAL ESTIMATE: $${totalEstimate}
                             <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-4">Contact Info</h3>
 
                             <div className="grid grid-cols-1 gap-3">
-                                <input required placeholder="Business Name *" className="w-full bg-secondary/20 border border-border rounded px-3 py-2 text-sm text-foreground focus:border-primary/50 outline-none placeholder:text-muted-foreground"
+                                <input required placeholder="Business Name *" className="w-full bg-secondary/10 border border-input rounded px-3 py-2 text-sm text-foreground focus:ring-1 focus:ring-primary outline-none placeholder:text-muted-foreground"
                                     value={formData.businessName} onChange={e => setFormData({ ...formData, businessName: e.target.value })}
                                 />
-                                <input required placeholder="Contact Name *" className="w-full bg-secondary/20 border border-border rounded px-3 py-2 text-sm text-foreground focus:border-primary/50 outline-none placeholder:text-muted-foreground"
+                                <input required placeholder="Contact Name *" className="w-full bg-secondary/10 border border-input rounded px-3 py-2 text-sm text-foreground focus:ring-1 focus:ring-primary outline-none placeholder:text-muted-foreground"
                                     value={formData.contactName} onChange={e => setFormData({ ...formData, contactName: e.target.value })}
                                 />
-                                <input required placeholder="Phone Number *" className="w-full bg-secondary/20 border border-border rounded px-3 py-2 text-sm text-foreground focus:border-primary/50 outline-none placeholder:text-muted-foreground"
+                                <input required placeholder="Phone Number *" className="w-full bg-secondary/10 border border-input rounded px-3 py-2 text-sm text-foreground focus:ring-1 focus:ring-primary outline-none placeholder:text-muted-foreground"
                                     value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })}
                                 />
-                                <input type="email" placeholder="Email Address (Optional)" className="w-full bg-secondary/20 border border-border rounded px-3 py-2 text-sm text-foreground focus:border-primary/50 outline-none placeholder:text-muted-foreground"
+                                <input type="email" placeholder="Email Address (Optional)" className="w-full bg-secondary/10 border border-input rounded px-3 py-2 text-sm text-foreground focus:ring-1 focus:ring-primary outline-none placeholder:text-muted-foreground"
                                     value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
                                 />
-                                <textarea placeholder="Order Notes..." className="w-full bg-secondary/20 border border-border rounded px-3 py-2 text-sm text-foreground focus:border-primary/50 outline-none h-20 resize-none placeholder:text-muted-foreground"
+                                <textarea placeholder="Order Notes..." className="w-full bg-secondary/10 border border-input rounded px-3 py-2 text-sm text-foreground focus:ring-1 focus:ring-primary outline-none h-20 resize-none placeholder:text-muted-foreground"
                                     value={formData.notes} onChange={e => setFormData({ ...formData, notes: e.target.value })}
                                 />
                             </div>
