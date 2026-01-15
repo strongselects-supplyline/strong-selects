@@ -11,19 +11,33 @@ export async function fetchCatalog(): Promise<Product[]> {
 
         const data = await res.json();
 
-        // Validate with Zod - will strip unknown fields if schema is strict, 
-        // but our schema is open enough. It ensures types are correct.
-        const parsed = CatalogSchema.safeParse(data);
+        const rawData = await res.json();
 
-        if (!parsed.success) {
-            console.error("Catalog Validation Error:", parsed.error);
-            // Return partial data or empty array? 
-            // For now, let's try to return what we have, or throw.
-            // Better to show nothing than broken data.
+        if (!Array.isArray(rawData)) {
+            console.error("API did not return an array");
             return [];
         }
 
-        return parsed.data;
+        // Validate row by row so one bad egg doesn't spoil the bunch
+        const validProducts: Product[] = [];
+        const errors: any[] = [];
+
+        rawData.forEach((item, index) => {
+            const result = ProductSchema.safeParse(item);
+            if (result.success) {
+                validProducts.push(result.data);
+            } else {
+                // Log the confusing row for debugging (could be sent to a logging service)
+                console.warn(`Row ${index + 1} Invalid:`, result.error.errors[0]?.message, item);
+                errors.push({ row: index, error: result.error });
+            }
+        });
+
+        if (validProducts.length === 0 && errors.length > 0) {
+            console.error("All rows failed validation. First error:", errors[0]);
+        }
+
+        return validProducts;
     } catch (error) {
         console.error("API Error:", error);
         return [];
