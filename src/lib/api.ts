@@ -1,4 +1,4 @@
-import { CatalogSchema, Product } from "./schema";
+import { CatalogSchema, Product, ProductSchema } from "./schema";
 
 export async function fetchCatalog(): Promise<Product[]> {
     try {
