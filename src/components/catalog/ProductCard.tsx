@@ -30,10 +30,10 @@ export function ProductCard({ product }: ProductCardProps) {
     return (
         <div
             onClick={() => openProductDrawer(product)}
-            className="group relative flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+            className="group relative flex flex-col bg-card rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
         >
             {/* Image Area */}
-            <div className="relative aspect-square w-full bg-muted overflow-hidden">
+            <div className="relative aspect-square w-full bg-secondary/30 overflow-hidden">
                 {mainImage ? (
                     <Image
                         src={mainImage}
@@ -42,19 +42,19 @@ export function ProductCard({ product }: ProductCardProps) {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                 ) : (
-                    <div className="flex items-center justify-center w-full h-full text-muted-foreground/50 text-xs uppercase tracking-widest font-bold">
+                    <div className="flex items-center justify-center w-full h-full text-muted-foreground/30 text-xs uppercase tracking-widest font-bold">
                         No Image
                     </div>
                 )}
 
                 {/* Tier Badge */}
-                <div className="absolute top-2 left-2 px-2 py-1 rounded bg-background/80 backdrop-blur-md border border-border text-[10px] font-bold tracking-wider text-foreground">
+                <div className="absolute top-2 left-2 px-2 py-1 rounded bg-white/90 backdrop-blur border border-black/5 text-[10px] font-bold tracking-wider text-black shadow-sm">
                     {product.tier}
                 </div>
 
                 {/* Status Badge */}
                 <div className={cn(
-                    "absolute top-2 right-2 px-2 py-1 rounded border text-[10px] font-bold tracking-wider",
+                    "absolute top-2 right-2 px-2 py-1 rounded text-[10px] font-bold tracking-wider shadow-sm",
                     statusColor
                 )}>
                     {statusLabel}
@@ -64,32 +64,38 @@ export function ProductCard({ product }: ProductCardProps) {
             {/* Info Area */}
             <div className="p-4 flex-1 flex flex-col">
                 <div className="flex justify-between items-start gap-2 mb-1">
-                    <h3 className="font-serif text-lg text-foreground leading-tight">{product.strain_name}</h3>
+                    <h3 className="font-serif text-lg text-foreground leading-tight group-hover:text-primary transition-colors">{product.strain_name}</h3>
                     {product.type && (
-                        <span className="shrink-0 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground uppercase">
+                        <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/70">
                             {product.type}
                         </span>
                     )}
                 </div>
 
-                <div className="text-xs text-muted-foreground mb-4 line-clamp-2">
-                    {product.ratio && <span className="mr-2">{product.ratio}</span>}
+                <div className="text-xs text-muted-foreground mb-4 line-clamp-2 font-light">
+                    {product.ratio && <span className="mr-2 font-medium text-foreground">{product.ratio}</span>}
                     {product.lineage}
                 </div>
 
-                <div className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3">
-                    <div className="text-center">
-                        <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Per Oz</div>
-                        <div className="text-sm font-medium text-foreground">${product.price_oz || "--"}</div>
+                <div className="mt-auto pt-3">
+                    <div className="grid grid-cols-3 gap-2 mb-3">
+                        <div className="text-center">
+                            <div className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">Per Oz</div>
+                            <div className="text-sm font-medium text-foreground">${product.price_oz || "--"}</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">QP</div>
+                            <div className="text-sm font-medium text-foreground">${product.price_qp || "--"}</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">LB</div>
+                            <div className="text-sm font-medium text-foreground">${product.price_lb || "--"}</div>
+                        </div>
                     </div>
-                    <div className="text-center border-l border-border">
-                        <div className="text-[10px] text-muted-foreground uppercase tracking-wider">QP</div>
-                        <div className="text-sm font-medium text-foreground">${product.price_qp || "--"}</div>
-                    </div>
-                    <div className="text-center border-l border-border">
-                        <div className="text-[10px] text-muted-foreground uppercase tracking-wider">LB</div>
-                        <div className="text-sm font-medium text-foreground">${product.price_lb || "--"}</div>
-                    </div>
+
+                    <button className="w-full py-2 bg-secondary text-secondary-foreground text-xs font-bold uppercase tracking-widest rounded-lg group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                        View Details
+                    </button>
                 </div>
             </div>
         </div>
