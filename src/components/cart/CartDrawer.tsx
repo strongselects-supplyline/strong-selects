@@ -90,7 +90,10 @@ TOTAL ESTIMATE: $${totalEstimate}
     if (submitStatus === "success") {
         return (
             <Sheet open={isCartOpen} onOpenChange={(open) => toggleCart(open)}>
-                <SheetContent className="w-full sm:max-w-md bg-background/95 backdrop-blur-xl border-l border-border text-foreground flex flex-col items-center justify-center text-center p-8">
+                <SheetContent
+                    className="w-full sm:max-w-md border-l border-border text-foreground flex flex-col items-center justify-center text-center p-8"
+                    style={{ backgroundColor: '#0a0a0a' }}
+                >
                     <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                         <Send className="w-8 h-8 text-primary" />
                     </div>
@@ -113,7 +116,10 @@ TOTAL ESTIMATE: $${totalEstimate}
 
     return (
         <Sheet open={isCartOpen} onOpenChange={(open) => toggleCart(open)}>
-            <SheetContent className="w-full sm:max-w-md bg-background/95 backdrop-blur-xl border-l border-border text-foreground p-0 flex flex-col h-full">
+            <SheetContent
+                className="w-full sm:max-w-md border-l border-border text-foreground p-0 flex flex-col h-full"
+                style={{ backgroundColor: '#0a0a0a' }}
+            >
                 <SheetHeader className="p-6 border-b border-border shrink-0">
                     <SheetTitle className="text-xl font-serif text-foreground flex items-center gap-2">
                         Your Request
@@ -196,7 +202,7 @@ TOTAL ESTIMATE: $${totalEstimate}
                 </div>
 
                 {cart.length > 0 && (
-                    <div className="p-6 border-t border-border bg-background/80 shrink-0">
+                    <div className="p-6 border-t border-border shrink-0" style={{ backgroundColor: '#0a0a0a' }}>
                         <button
                             type="submit"
                             form="request-form"
