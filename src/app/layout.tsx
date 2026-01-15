@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "Strong Selects | Wholesale Catalog",
   description: "Premium members-only wholesale catalog",
   manifest: "/manifest.json",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0",
   icons: {
     icon: "/favicon.ico",
     apple: "/icon-192.png",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   themeColor: "#d4af37",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
     title: "Strong Selects",
   },
 };

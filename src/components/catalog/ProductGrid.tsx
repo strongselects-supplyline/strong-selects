@@ -16,6 +16,15 @@ export function ProductGrid() {
         sortBy
     } = useStore();
 
+    // Prevent Hydration Mismatch
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Pagination State (Default for server)
+    const [visibleCount, setVisibleCount] = useState(16);
+
     // Initial Fetch
     useEffect(() => {
         async function init() {
@@ -27,13 +36,16 @@ export function ProductGrid() {
         init();
     }, [setCatalog, setIsLoading]);
 
-    // Detect mobile for aggressive performance optimization
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const initialLoadCount = isMobile ? 8 : 16;
-    const loadMoreCount = isMobile ? 8 : 16;
+    // Handle initial visible count based on screen size (Post-Hydration)
+    useEffect(() => {
+        if (mounted) {
+            const isMobile = window.innerWidth < 768;
+            setVisibleCount(isMobile ? 8 : 16);
+        }
+    }, [mounted]);
 
-    // Pagination State
-    const [visibleCount, setVisibleCount] = useState(initialLoadCount);
+    const loadMoreCount = mounted && window.innerWidth < 768 ? 8 : 16;
+
 
     // Filter Logic... same as before...
     const filteredCatalog = catalog.filter(product => {
@@ -97,8 +109,11 @@ export function ProductGrid() {
 
     // Reset pagination when filters change
     useEffect(() => {
-        setVisibleCount(initialLoadCount);
-    }, [filters, sortBy, initialLoadCount]);
+        if (mounted) {
+            const isMobile = window.innerWidth < 768;
+            setVisibleCount(isMobile ? 8 : 16);
+        }
+    }, [filters, sortBy, mounted]);
 
     if (isLoading) {
         return (
