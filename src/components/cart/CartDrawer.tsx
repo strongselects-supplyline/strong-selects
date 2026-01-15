@@ -73,12 +73,23 @@ TOTAL ESTIMATE: $${totalEstimate}
 
         // If API failed or not present, open mailto
         if (!apiSuccess) {
-            const email = process.env.NEXT_PUBLIC_REQUEST_EMAIL || "info@strongselects.com";
+            const email = process.env.NEXT_PUBLIC_REQUEST_EMAIL || "strongselects@gmail.com";
             const subject = encodeURIComponent(`Order Request - ${formData.businessName}`);
             const body = encodeURIComponent(summary);
 
             // Use location.href instead of window.open for better compatibility
             const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+
+            // Debug: Log mailto link length
+            console.log("Mailto link length:", mailtoLink.length);
+            console.log("Mailto link:", mailtoLink);
+
+            // Warn if link is too long (mailto URLs have ~2000 char limit)
+            if (mailtoLink.length > 2000) {
+                alert("⚠️ Your request is too large to send via email. Please reduce items or contact us directly at " + email);
+                setIsSubmitting(false);
+                return;
+            }
 
             try {
                 window.location.href = mailtoLink;
