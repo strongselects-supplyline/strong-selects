@@ -27,6 +27,17 @@ export function ProductCard({ product }: ProductCardProps) {
     const rawImage = product.photo_url || product.media_photo_urls?.split(",")[0];
     const mainImage = getDirectImageUrl(rawImage);
 
+    // Strain Color Logic
+    const getStrainColor = (type?: string) => {
+        const t = type?.toLowerCase() || "";
+        if (t.includes("indica")) return "text-purple-400 border-purple-500/30 bg-purple-500/10";
+        if (t.includes("sativa")) return "text-orange-400 border-orange-500/30 bg-orange-500/10";
+        if (t.includes("hybrid")) return "text-green-400 border-green-500/30 bg-green-500/10";
+        return "text-muted-foreground border-border";
+    };
+
+    const strainColorClass = getStrainColor(product.type);
+
     return (
         <div
             onClick={() => openProductDrawer(product)}
@@ -68,7 +79,10 @@ export function ProductCard({ product }: ProductCardProps) {
                 <div className="flex justify-between items-start gap-2 mb-1">
                     <h3 className="font-serif text-lg text-foreground leading-tight group-hover:text-primary transition-colors">{product.strain_name}</h3>
                     {product.type && (
-                        <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/70">
+                        <span className={cn(
+                            "shrink-0 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border",
+                            strainColorClass
+                        )}>
                             {product.type}
                         </span>
                     )}
