@@ -39,6 +39,8 @@ export function ProductCard({ product }: ProductCardProps) {
                         src={mainImage}
                         alt={product.strain_name}
                         fill
+                        loading="lazy"
+                        sizes="(max-width: 768px) 50vw, 25vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                 ) : (

@@ -53,13 +53,7 @@ export function Header() {
 
                 {/* Actions Area */}
                 <div className="flex items-center gap-2">
-                    <button
-                        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                        className="p-2 rounded-full hover:bg-white/10 text-white/60 hover:text-white transition-colors"
-                        title="Toggle Theme"
-                    >
-                        {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                    </button>
+
 
                     {/* Cart Trigger */}
                     <button

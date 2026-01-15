@@ -2,7 +2,7 @@
 
 import { useStore } from "@/lib/store";
 import { ProductCard } from "./ProductCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchCatalog } from "@/lib/api";
 import { Loader2 } from "lucide-react";
 
@@ -27,8 +27,12 @@ export function ProductGrid() {
         init();
     }, [setCatalog, setIsLoading]);
 
-    // Filtering & Sorting Logic
+    // Pagination State
+    const [visibleCount, setVisibleCount] = useState(16);
+
+    // Filter Logic... same as before...
     const filteredCatalog = catalog.filter(product => {
+        // ... (keep existing filter logic)
         // 1. Search
         if (filters.search) {
             const q = filters.search.toLowerCase();
@@ -49,10 +53,7 @@ export function ProductGrid() {
             return false;
         }
 
-        // 4. Availability - mapped from text to live_qty logic if needed, 
-        // but for now let's assume we might filter by status. 
-        // The prompt requirement implies chips for Availability status.
-        // We need to compute status for each product to check against filter.
+        // 4. Availability
         if (filters.availability.length > 0) {
             const status =
                 product.live_qty_g <= 0 ? "Out" :
@@ -77,16 +78,20 @@ export function ProductGrid() {
                 return a.tier.localeCompare(b.tier);
             case "newest":
             default:
-                // Assuming last_updated is a date string or we fallback to 0
                 return new Date(b.last_updated || 0).getTime() - new Date(a.last_updated || 0).getTime();
         }
     });
+
+    // Reset pagination when filters change
+    useEffect(() => {
+        setVisibleCount(16);
+    }, [filters, sortBy]);
 
     if (isLoading) {
         return (
             <div className="flex flex-col items-center justify-center py-20">
                 <Loader2 className="w-8 h-8 text-primary animate-spin mb-4" />
-                <p className="text-white/40 text-sm animate-pulse">Loading Catalog...</p>
+                <p className="text-muted-foreground text-sm animate-pulse">Loading Catalog...</p>
             </div>
         );
     }
@@ -100,15 +105,30 @@ export function ProductGrid() {
         );
     }
 
+    const visibleCatalog = sortedCatalog.slice(0, visibleCount);
+    const hasMore = visibleCount < sortedCatalog.length;
+
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                {sortedCatalog.map((product, idx) => (
+                {visibleCatalog.map((product, idx) => (
                     <ProductCard key={`${product.strain_name}-${idx}`} product={product} />
                 ))}
             </div>
-            <div className="mt-12 text-center text-xs text-muted-foreground">
-                Showing {sortedCatalog.length} of {catalog.length} items
+
+            {hasMore && (
+                <div className="mt-12 flex justify-center">
+                    <button
+                        onClick={() => setVisibleCount(prev => prev + 16)}
+                        className="px-8 py-3 bg-secondary hover:bg-primary/20 hover:text-primary text-foreground border border-border rounded-full text-xs font-bold uppercase tracking-widest transition-all"
+                    >
+                        Load More Stamps ({sortedCatalog.length - visibleCount} remaining)
+                    </button>
+                </div>
+            )}
+
+            <div className="mt-6 text-center text-xs text-muted-foreground">
+                Showing {visibleCatalog.length} of {sortedCatalog.length} items
             </div>
         </div>
     );
