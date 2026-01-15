@@ -20,27 +20,31 @@ export async function POST(request: Request) {
         const sheets = google.sheets({ version: "v4", auth });
         const spreadsheetId = process.env.GOOGLE_SHEET_ID;
 
-        // FORMAT ITEMS
+        // 1. Get the first sheet name dynamically instead of assuming "Sheet1"
+        const spreadsheet = await sheets.spreadsheets.get({ spreadsheetId });
+        const sheetName = spreadsheet.data.sheets?.[0]?.properties?.title || "Sheet1";
+
+        // 2. Format items list
         const itemsString = cart.map((item: any) =>
             `${item.product.strain_name} (${item.quantity}${item.unit})`
         ).join(", ");
 
-        // PREPARE ROW
+        // 3. Prepare the row data
         const row = [
-            new Date().toISOString(), // Timestamp
+            new Date().toLocaleString(), // Localized timestamp
             businessName,
             contactName,
             email,
             phone,
             itemsString,
-            total,
+            `$${total}`,
             notes
         ];
 
-        // APPEND TO SHEET
+        // 4. Append to the sheet
         await sheets.spreadsheets.values.append({
             spreadsheetId,
-            range: "Sheet1!A:H", // Assumes first sheet is named Sheet1
+            range: `${sheetName}!A:H`,
             valueInputOption: "USER_ENTERED",
             requestBody: {
                 values: [row],
@@ -49,10 +53,16 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ success: true });
 
-    } catch (error) {
+    } catch (error: any) {
         console.error("Sheet Error:", error);
+
+        // Return descriptive error for debugging
         return NextResponse.json(
-            { error: "Failed to submit order to sheet" },
+            {
+                error: "Failed to submit order to sheet",
+                details: error.message || "Unknown error",
+                status: error.status || 500
+            },
             { status: 500 }
         );
     }

@@ -79,11 +79,12 @@ Notes: ${formData.notes}
                     setFormData({ businessName: "", contactName: "", email: "", phone: "", notes: "" });
                 }, 3000);
             } else {
-                throw new Error("Submission failed");
+                const errorData = await res.json();
+                throw new Error(errorData.details || "Submission failed");
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error("Submission failed:", error);
-            alert("Failed to submit request. Please try again.");
+            alert(`Failed to submit: ${error.message}. Please check if the Google Sheet is shared with the service account.`);
         } finally {
             setIsSubmitting(false);
         }
