@@ -18,37 +18,37 @@ export function FilterBar() {
             <div className="container mx-auto px-4 flex items-center gap-2 min-w-max">
                 <span className="text-xs text-muted-foreground font-medium mr-2">FILTERS</span>
 
-                {/* Tier Filters */}
-                {FILTERS.tier.map((tier) => {
-                    const isActive = filters.tier.includes(tier);
+                {/* Type Filters */}
+                {FILTERS.type.map((type) => {
+                    const isActive = filters.type.includes(type);
                     return (
                         <button
-                            key={tier}
-                            onClick={() => toggleFilter("tier", tier)}
+                            key={type}
+                            onClick={() => toggleFilter("type", type)}
                             className={cn(
-                                "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+                                "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border",
                                 isActive
-                                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                                    : "bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80"
+                                    ? "bg-foreground text-background border-foreground shadow-md"
+                                    : "bg-secondary/50 text-muted-foreground border-transparent hover:bg-secondary hover:text-foreground"
                             )}
                         >
-                            {tier}
+                            {type}
                         </button>
                     );
                 })}
 
                 <div className="w-px h-6 bg-border mx-2" />
 
-                <span className="text-xs text-muted-foreground font-medium mr-2">SORT</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mr-2">Sort</span>
 
                 {/* Sort Options */}
                 <button
                     onClick={() => setSortBy("price-asc")}
                     className={cn(
-                        "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+                        "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border",
                         sortBy === "price-asc"
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80"
+                            ? "bg-foreground text-background border-foreground shadow-md"
+                            : "bg-secondary/50 text-muted-foreground border-transparent hover:bg-secondary hover:text-foreground"
                     )}
                 >
                     Price Low
@@ -56,20 +56,20 @@ export function FilterBar() {
                 <button
                     onClick={() => setSortBy("price-desc")}
                     className={cn(
-                        "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+                        "px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border",
                         sortBy === "price-desc"
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80"
+                            ? "bg-foreground text-background border-foreground shadow-md"
+                            : "bg-secondary/50 text-muted-foreground border-transparent hover:bg-secondary hover:text-foreground"
                     )}
                 >
                     Price High
                 </button>
 
                 {/* Reset */}
-                {(filters.tier.length > 0 || filters.search) && (
+                {(filters.type.length > 0 || filters.search) && (
                     <button
                         onClick={() => {
-                            setFilter("tier", []);
+                            setFilter("type", []);
                             setFilter("search", "");
                             setSortBy("price-asc");
                         }}
