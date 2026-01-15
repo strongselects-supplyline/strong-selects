@@ -14,7 +14,7 @@ export function FilterBar() {
     const { filters, toggleFilter, setFilter, sortBy, setSortBy } = useStore();
 
     return (
-        <div className="w-full overflow-x-auto py-4 no-scrollbar border-b border-border bg-background shadow-sm sticky top-16 z-40">
+        <div className="w-full overflow-x-auto py-4 no-scrollbar border-b border-border sticky top-16 z-40" style={{ backgroundColor: '#0a0a0a' }}>
             <div className="container mx-auto px-4 flex items-center gap-2 min-w-max">
                 <span className="text-xs text-muted-foreground font-medium mr-2">FILTERS</span>
 
