@@ -12,16 +12,18 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
     const { openProductDrawer } = useStore();
 
-    // Helper to determine status color
+    // Gram-based status logic
     const statusColor =
         product.live_qty_g <= 0 ? "text-red-500 border-red-500/20 bg-red-500/10" :
-            (product.threshold_over_g && product.live_qty_g < product.threshold_over_g) ? "text-yellow-500 border-yellow-500/20 bg-yellow-500/10" :
-                "text-primary border-primary/20 bg-primary/10";
+            product.live_qty_g < 100 ? "text-orange-500 border-orange-500/20 bg-orange-500/10" :
+                product.live_qty_g < 448 ? "text-yellow-500 border-yellow-500/20 bg-yellow-500/10" :
+                    "text-primary border-primary/20 bg-primary/10";
 
     const statusLabel =
-        product.live_qty_g <= 0 ? "OUT OF STOCK" :
-            (product.threshold_over_g && product.live_qty_g < product.threshold_over_g) ? "LOW STOCK" :
-                "AVAILABLE";
+        product.live_qty_g <= 0 ? "SOLD OUT" :
+            product.live_qty_g < 100 ? "LOW STOCK" :
+                product.live_qty_g < 448 ? "LOW STOCK" :
+                    "AVAILABLE";
 
     // Image Logic
     const rawImage = product.photo_url || product.media_photo_urls?.split(",")[0];

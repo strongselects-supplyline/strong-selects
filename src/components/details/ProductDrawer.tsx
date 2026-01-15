@@ -124,13 +124,14 @@ export function ProductDrawer() {
                             <div className={cn(
                                 "text-xl font-mono uppercase tracking-wider",
                                 product.live_qty_g <= 0 ? "text-red-500" :
-                                    (product.threshold_over_g && product.live_qty_g < product.threshold_over_g) ? "text-yellow-500" :
-                                        "text-primary"
+                                    product.live_qty_g < 100 ? "text-orange-500" :
+                                        product.live_qty_g < 448 ? "text-yellow-500" :
+                                            "text-primary"
                             )}>
-                                {product.live_qty_g <= 0 ? "OUT OF STOCK" :
-                                    (product.threshold_over_g && product.live_qty_g < product.threshold_over_g)
-                                        ? `LOW STOCK - ${product.live_qty_g}g`
-                                        : `IN STOCK - ${product.live_qty_g}g`
+                                {product.live_qty_g <= 0 ? "SOLD OUT" :
+                                    product.live_qty_g < 100 ? `LOW - ${product.live_qty_g}g` :
+                                        product.live_qty_g < 448 ? `LOW - ${product.live_qty_g}g` :
+                                            `IN STOCK - ${product.live_qty_g}g`
                                 }
                             </div>
                         </div>
