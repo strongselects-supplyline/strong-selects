@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { DebugPanel } from "@/components/DebugPanel";
 import { Suspense } from "react";
@@ -30,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
+        style={{ backgroundColor: "#0a0a0a", color: "#fafafa" }}
       >
         <ThemeProvider
           attribute="class"

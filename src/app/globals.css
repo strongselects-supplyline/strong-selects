@@ -105,5 +105,8 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    background-color: #0a0a0a !important;
+    /* Obsidian Black Force */
+    color: #fafafa !important;
   }
 }
