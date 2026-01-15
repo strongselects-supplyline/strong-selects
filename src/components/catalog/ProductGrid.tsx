@@ -94,8 +94,8 @@ export function ProductGrid() {
     if (sortedCatalog.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center py-20 text-center">
-                <p className="text-xl text-white/50 font-serif mb-2">No items found</p>
-                <p className="text-sm text-white/30">Try adjusting your filters or search.</p>
+                <p className="text-xl text-muted-foreground font-serif mb-2">No items found</p>
+                <p className="text-sm text-muted-foreground/50">Try adjusting your filters or search.</p>
             </div>
         );
     }
@@ -107,7 +107,7 @@ export function ProductGrid() {
                     <ProductCard key={`${product.strain_name}-${idx}`} product={product} />
                 ))}
             </div>
-            <div className="mt-12 text-center text-xs text-white/20">
+            <div className="mt-12 text-center text-xs text-muted-foreground">
                 Showing {sortedCatalog.length} of {catalog.length} items
             </div>
         </div>

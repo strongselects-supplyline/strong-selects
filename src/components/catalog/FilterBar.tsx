@@ -11,12 +11,12 @@ const FILTERS = {
 };
 
 export function FilterBar() {
-    const { filters, toggleFilter, setFilter } = useStore();
+    const { filters, toggleFilter, setFilter, sortBy, setSortBy } = useStore();
 
     return (
-        <div className="w-full overflow-x-auto py-4 no-scrollbar border-b border-white/5 bg-background/80 backdrop-blur-sm sticky top-16 z-40">
+        <div className="w-full overflow-x-auto py-4 no-scrollbar border-b border-border bg-background sticky top-16 z-40">
             <div className="container mx-auto px-4 flex items-center gap-2 min-w-max">
-                <span className="text-xs text-white/40 font-medium mr-2">FILTERS</span>
+                <span className="text-xs text-muted-foreground font-medium mr-2">FILTERS</span>
 
                 {/* Tier Filters */}
                 {FILTERS.tier.map((tier) => {
@@ -28,8 +28,8 @@ export function FilterBar() {
                             className={cn(
                                 "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
                                 isActive
-                                    ? "bg-primary text-black border-primary"
-                                    : "bg-white/5 text-white/60 border-white/10 hover:border-white/20 hover:text-white"
+                                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                                    : "bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80"
                             )}
                         >
                             {tier}
@@ -37,36 +37,41 @@ export function FilterBar() {
                     );
                 })}
 
-                <div className="w-px h-6 bg-white/10 mx-2" />
-
-                {/* Type Filters */}
-                {FILTERS.type.map((type) => {
-                    const isActive = filters.type.includes(type);
-                    return (
-                        <button
-                            key={type}
-                            onClick={() => toggleFilter("type", type)}
-                            className={cn(
-                                "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
-                                isActive
-                                    ? "bg-primary text-black border-primary"
-                                    : "bg-white/5 text-white/60 border-white/10 hover:border-white/20 hover:text-white"
-                            )}
-                        >
-                            {type}
-                        </button>
-                    );
-                })}
-
                 <div className="w-px h-6 bg-border mx-2" />
 
+                <span className="text-xs text-muted-foreground font-medium mr-2">SORT</span>
+
+                {/* Sort Options */}
+                <button
+                    onClick={() => setSortBy("price-asc")}
+                    className={cn(
+                        "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+                        sortBy === "price-asc"
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80"
+                    )}
+                >
+                    Price Low
+                </button>
+                <button
+                    onClick={() => setSortBy("price-desc")}
+                    className={cn(
+                        "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+                        sortBy === "price-desc"
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80"
+                    )}
+                >
+                    Price High
+                </button>
+
                 {/* Reset */}
-                {(filters.tier.length > 0 || filters.type.length > 0 || filters.search) && (
+                {(filters.tier.length > 0 || filters.search) && (
                     <button
                         onClick={() => {
                             setFilter("tier", []);
-                            setFilter("type", []);
                             setFilter("search", "");
+                            setSortBy("price-asc");
                         }}
                         className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
                     >

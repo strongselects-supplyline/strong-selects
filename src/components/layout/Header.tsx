@@ -20,7 +20,7 @@ export function Header() {
     }, [searchValue, setFilter]);
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-4">
                 {/* Logo Area */}
                 <div className="flex items-center gap-3 shrink-0">
