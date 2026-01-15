@@ -22,8 +22,8 @@ interface AppState {
     isCartOpen: boolean;
     toggleCart: (isOpen?: boolean) => void;
     addToCart: (item: CartItem) => void;
-    removeFromCart: (index: number) => void; // Using index for simplicity as products might be duplicate lines with diff units
-    updateCartItem: (index: number, updates: Partial<CartItem>) => void;
+    removeFromCart: (strainName: string, unit: string) => void;
+    updateQuantity: (strainName: string, unit: string, quantity: number) => void;
     clearCart: () => void;
 
     // UI
@@ -61,12 +61,32 @@ export const useStore = create<AppState>((set) => ({
     cart: [],
     isCartOpen: false,
     toggleCart: (isOpen) => set((state) => ({ isCartOpen: isOpen ?? !state.isCartOpen })),
-    addToCart: (item) => set((state) => ({ cart: [...state.cart, item], isCartOpen: true })),
-    removeFromCart: (index) =>
-        set((state) => ({ cart: state.cart.filter((_, i) => i !== index) })),
-    updateCartItem: (index, updates) =>
+    addToCart: (item) => set((state) => {
+        // Check if item already exists
+        const existingIndex = state.cart.findIndex(
+            (i) => i.product.strain_name === item.product.strain_name && i.unit === item.unit
+        );
+
+        if (existingIndex >= 0) {
+            // Update quantity if exists
+            const newCart = [...state.cart];
+            newCart[existingIndex].quantity += item.quantity;
+            return { cart: newCart, isCartOpen: true };
+        }
+
+        return { cart: [...state.cart, item], isCartOpen: true };
+    }),
+    removeFromCart: (strainName, unit) =>
         set((state) => ({
-            cart: state.cart.map((item, i) => (i === index ? { ...item, ...updates } : item)),
+            cart: state.cart.filter((item) => !(item.product.strain_name === strainName && item.unit === unit))
+        })),
+    updateQuantity: (strainName, unit, quantity) =>
+        set((state) => ({
+            cart: state.cart.map((item) =>
+                (item.product.strain_name === strainName && item.unit === unit)
+                    ? { ...item, quantity }
+                    : item
+            ),
         })),
     clearCart: () => set({ cart: [] }),
 
