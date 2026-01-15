@@ -20,8 +20,8 @@ export function ProductCard({ product }: ProductCardProps) {
 
     const statusLabel =
         product.live_qty_g <= 0 ? "OUT OF STOCK" :
-            (product.threshold_over_g && product.live_qty_g < product.threshold_over_g) ? `LOW: ${product.live_qty_g}g` :
-                `IN STOCK: ${product.live_qty_g}g`;
+            (product.threshold_over_g && product.live_qty_g < product.threshold_over_g) ? "LOW STOCK" :
+                "AVAILABLE";
 
     // Image Logic
     const rawImage = product.photo_url || product.media_photo_urls?.split(",")[0];

@@ -118,9 +118,21 @@ export function ProductDrawer() {
                             <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Total THC</div>
                             <div className="text-xl font-mono text-primary">{product.coa_total_pct || "N/A"}</div>
                         </div>
+                        {/* Availability Box */}
                         <div className="bg-secondary rounded-lg p-3 border border-border/50">
                             <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Availability</div>
-                            <div className="text-xl font-mono text-foreground">{product.live_qty_g > 0 ? "IN STOCK" : "OUT"}</div>
+                            <div className={cn(
+                                "text-xl font-mono uppercase tracking-wider",
+                                product.live_qty_g <= 0 ? "text-red-500" :
+                                    (product.threshold_over_g && product.live_qty_g < product.threshold_over_g) ? "text-yellow-500" :
+                                        "text-primary"
+                            )}>
+                                {product.live_qty_g <= 0 ? "OUT OF STOCK" :
+                                    (product.threshold_over_g && product.live_qty_g < product.threshold_over_g)
+                                        ? `LOW STOCK - ${product.live_qty_g}g`
+                                        : `IN STOCK - ${product.live_qty_g}g`
+                                }
+                            </div>
                         </div>
                     </div>
 
