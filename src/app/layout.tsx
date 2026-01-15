@@ -31,14 +31,12 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} antialiased`}
         style={{ backgroundColor: "#0a0a0a", color: "#fafafa" }}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ErrorBoundary>
           {children}
-        </ThemeProvider>
+          <Suspense fallback={null}>
+            <DebugPanel />
+          </Suspense>
+        </ErrorBoundary>
       </body>
     </html>
   );
