@@ -65,7 +65,11 @@ export function ProductDrawer() {
 
     return (
         <Sheet open={productDrawerOpen} onOpenChange={(open) => !open && closeProductDrawer()}>
-            <SheetContent side="right" className="w-full sm:max-w-xl p-0 border-l border-border bg-background/95 backdrop-blur-xl text-foreground overflow-y-auto">
+            <SheetContent
+                side="right"
+                className="w-full sm:max-w-xl p-0 border-l border-border text-foreground overflow-y-auto"
+                style={{ backgroundColor: '#0a0a0a' }}
+            >
 
                 {/* Close Button Overlay */}
                 <button
