@@ -84,7 +84,7 @@ Notes: ${formData.notes}
             }
         } catch (error: any) {
             console.error("Submission failed:", error);
-            alert(`Failed to submit: ${error.message}. (Build: f1f7c96). Please check if the Google Sheet is shared with the service account.`);
+            alert(`Failed to submit: ${error.message}. (Build: 3d56ead). Please check if the Google Sheet is shared with the service account.`);
         } finally {
             setIsSubmitting(false);
         }
