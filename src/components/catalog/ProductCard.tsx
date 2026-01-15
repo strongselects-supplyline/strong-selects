@@ -55,9 +55,12 @@ export function ProductCard({ product }: ProductCardProps) {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                 ) : (
-                    <div className="flex items-center justify-center w-full h-full text-muted-foreground/30 text-xs uppercase tracking-widest font-bold">
-                        No Image
-                    </div>
+                    <Image
+                        src="/preorder_placeholder.png"
+                        alt="Pre Order Now"
+                        fill
+                        className="object-cover"
+                    />
                 )}
 
                 {/* Tier Badge */}
