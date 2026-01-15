@@ -26,7 +26,12 @@ A premium, mobile-first wholesale catalog and request system for Strong Selects.
    NEXT_PUBLIC_REQUEST_ENDPOINT_URL=""
    
    # Fallback Email for Mailto requests
-   NEXT_PUBLIC_REQUEST_EMAIL="orders@strongselects.com"
+   NEXT_PUBLIC_REQUEST_EMAIL="strongselects@gmail.com"
+
+   # Google Sheets Orders API (Service Account)
+   GOOGLE_SERVICE_ACCOUNT_EMAIL="strong-orders@strong-selects-orders.iam.gserviceaccount.com"
+   GOOGLE_SHEET_ID="1HSXn7KDWq-GGXSuqEEKcp3B3fuDlFbVQV3kjwiFMZaQ"
+   GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"
    ```
    
    > **Demo Mode**: To test with the included demo data, set the URL to your local dev URL:
