@@ -1,0 +1,479 @@
+[
+    {
+        "id": "1",
+        "category": "Outerwear",
+        "itemName": "Obsidian Stealth Parka",
+        "size": "L",
+        "price": 850,
+        "score": 9.8,
+        "profileTags": [
+            "Technical",
+            "Winter"
+        ],
+        "badge": "Best Seller",
+        "availability": "Available",
+        "notes": "Waterproof, breathable, and insulated with ethical down.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 850
+            },
+            {
+                "qty": 5,
+                "price": 800
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-1.jpg",
+        "updatedAt": "2023-10-25T10:00:00Z"
+    },
+    {
+        "id": "2",
+        "category": "Footwear",
+        "itemName": "Carbon Knit Runner",
+        "size": "10",
+        "price": 320,
+        "score": 9.2,
+        "profileTags": [
+            "Sport",
+            "Lightweight"
+        ],
+        "availability": "Available",
+        "notes": "Adaptive knit upper with carbon fiber plate.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 320
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-2.jpg",
+        "updatedAt": "2023-10-26T14:30:00Z"
+    },
+    {
+        "id": "3",
+        "category": "Accessories",
+        "itemName": "Matte Black Weekender",
+        "size": "One Size",
+        "price": 450,
+        "score": 9.5,
+        "profileTags": [
+            "Travel",
+            "Durable"
+        ],
+        "badge": "New Arrival",
+        "availability": "Low",
+        "notes": "Full-grain leather with matte black hardware.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 450
+            },
+            {
+                "qty": 3,
+                "price": 420
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-3.jpg",
+        "updatedAt": "2023-10-27T09:15:00Z"
+    },
+    {
+        "id": "4",
+        "category": "Tops",
+        "itemName": "Merino Tech Hoodie",
+        "size": "M",
+        "price": 180,
+        "score": 8.9,
+        "profileTags": [
+            "Casual",
+            "Warm"
+        ],
+        "availability": "Available",
+        "notes": "Odor-resistant merino wool blend.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 180
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-4.jpg",
+        "updatedAt": "2023-10-20T11:00:00Z"
+    },
+    {
+        "id": "5",
+        "category": "Bottoms",
+        "itemName": "City Commuter Pant",
+        "size": "32",
+        "price": 150,
+        "score": 9.0,
+        "profileTags": [
+            "Urban",
+            "Stretch"
+        ],
+        "availability": "Unavailable",
+        "notes": "Water-repellent fabric with 4-way stretch.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 150
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-5.jpg",
+        "updatedAt": "2023-10-15T16:45:00Z"
+    },
+    {
+        "id": "6",
+        "category": "Outerwear",
+        "itemName": "Neo-Tokyo Bomber",
+        "size": "XL",
+        "price": 600,
+        "score": 9.7,
+        "profileTags": [
+            "Streetwear",
+            "Limited"
+        ],
+        "badge": "Limited Edition",
+        "availability": "Low",
+        "notes": "Reversible design with embroidered details.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 600
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-6.jpg",
+        "updatedAt": "2023-10-28T12:00:00Z"
+    },
+    {
+        "id": "7",
+        "category": "Accessories",
+        "itemName": "Titanium Chrono Watch",
+        "size": "42mm",
+        "price": 1200,
+        "score": 9.9,
+        "profileTags": [
+            "Luxury",
+            "Watches"
+        ],
+        "availability": "Available",
+        "notes": "Aerospace-grade titanium case.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 1200
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-7.jpg",
+        "updatedAt": "2023-10-01T08:30:00Z"
+    },
+    {
+        "id": "8",
+        "category": "Footwear",
+        "itemName": "High-Top Court Sneaker",
+        "size": "9",
+        "price": 280,
+        "score": 8.8,
+        "profileTags": [
+            "Classic",
+            "Leather"
+        ],
+        "availability": "Available",
+        "notes": "Italian leather construction.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 280
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-8.jpg",
+        "updatedAt": "2023-10-22T13:20:00Z"
+    },
+    {
+        "id": "9",
+        "category": "Tops",
+        "itemName": "Silk Blend Dress Shirt",
+        "size": "L",
+        "price": 220,
+        "score": 9.1,
+        "profileTags": [
+            "Formal",
+            "Comfort"
+        ],
+        "availability": "Available",
+        "notes": "Wrinkle-free silk and cotton blend.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 220
+            },
+            {
+                "qty": 3,
+                "price": 200
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-9.jpg",
+        "updatedAt": "2023-10-05T10:10:00Z"
+    },
+    {
+        "id": "10",
+        "category": "Bottoms",
+        "itemName": "Tech Cargo Short",
+        "size": "34",
+        "price": 110,
+        "score": 8.5,
+        "profileTags": [
+            "Summer",
+            "Utility"
+        ],
+        "availability": "Available",
+        "notes": "Quick-dry fabric with multiple pockets.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 110
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-10.jpg",
+        "updatedAt": "2023-09-15T15:50:00Z"
+    },
+    {
+        "id": "11",
+        "category": "Outerwear",
+        "itemName": "Gore-Tex Shell",
+        "size": "M",
+        "price": 400,
+        "score": 9.4,
+        "profileTags": [
+            "Performance",
+            "Rain"
+        ],
+        "availability": "Available",
+        "notes": "Fully taped seams for ultimate waterproofing.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 400
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-11.jpg",
+        "updatedAt": "2023-10-10T09:00:00Z"
+    },
+    {
+        "id": "12",
+        "category": "Accessories",
+        "itemName": "Smart Ring",
+        "size": "10",
+        "price": 300,
+        "score": 9.3,
+        "profileTags": [
+            "Tech",
+            "Health"
+        ],
+        "badge": "Tech Pick",
+        "availability": "Low",
+        "notes": "Tracks sleep, activity, and recovery.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 300
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-12.jpg",
+        "updatedAt": "2023-10-30T11:45:00Z"
+    },
+    {
+        "id": "13",
+        "category": "Footwear",
+        "itemName": "Leather Chelsea Boot",
+        "size": "11",
+        "price": 350,
+        "score": 9.0,
+        "profileTags": [
+            "Formal",
+            "Winter"
+        ],
+        "availability": "Available",
+        "notes": "Goodyear welt construction.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 350
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-13.jpg",
+        "updatedAt": "2023-10-18T14:00:00Z"
+    },
+    {
+        "id": "14",
+        "category": "Tops",
+        "itemName": "Oversized graphic Tee",
+        "size": "XL",
+        "price": 85,
+        "score": 8.7,
+        "profileTags": [
+            "Streetwear",
+            "Cotton"
+        ],
+        "availability": "Available",
+        "notes": "Heavyweight cotton with screen print.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 85
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-14.jpg",
+        "updatedAt": "2023-09-25T16:30:00Z"
+    },
+    {
+        "id": "15",
+        "category": "Bottoms",
+        "itemName": "Slim Fit Denim",
+        "size": "31",
+        "price": 180,
+        "score": 9.2,
+        "profileTags": [
+            "Casual",
+            "Classic"
+        ],
+        "availability": "Available",
+        "notes": "Japanese selvedge denim.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 180
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-15.jpg",
+        "updatedAt": "2023-10-12T10:45:00Z"
+    },
+    {
+        "id": "16",
+        "category": "Accessories",
+        "itemName": "Noise Cancelling Headphones",
+        "size": "One Size",
+        "price": 350,
+        "score": 9.6,
+        "profileTags": [
+            "Tech",
+            "Audio"
+        ],
+        "availability": "Unavailable",
+        "notes": "Industry-leading noise cancellation.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 350
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-16.jpg",
+        "updatedAt": "2023-10-29T08:15:00Z"
+    },
+    {
+        "id": "17",
+        "category": "Outerwear",
+        "itemName": "Wool Peacoat",
+        "size": "L",
+        "price": 550,
+        "score": 9.3,
+        "profileTags": [
+            "Classic",
+            "Warm"
+        ],
+        "availability": "Available",
+        "notes": "Classic naval style in melton wool.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 550
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-17.jpg",
+        "updatedAt": "2023-10-08T13:50:00Z"
+    },
+    {
+        "id": "18",
+        "category": "Footwear",
+        "itemName": "Trail Running Shoe",
+        "size": "9.5",
+        "price": 160,
+        "score": 9.0,
+        "profileTags": [
+            "Sport",
+            "Outdoor"
+        ],
+        "availability": "Available",
+        "notes": "Rugged outsole for off-road traction.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 160
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-18.jpg",
+        "updatedAt": "2023-09-20T11:10:00Z"
+    },
+    {
+        "id": "19",
+        "category": "Tops",
+        "itemName": "Cashmere Sweater",
+        "size": "M",
+        "price": 250,
+        "score": 9.5,
+        "profileTags": [
+            "Luxury",
+            "Warm"
+        ],
+        "badge": "Staff Pick",
+        "availability": "Low",
+        "notes": "100% Grade-A cashmere.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 250
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-19.jpg",
+        "updatedAt": "2023-10-24T09:40:00Z"
+    },
+    {
+        "id": "20",
+        "category": "Accessories",
+        "itemName": "Minimalist Wallet",
+        "size": "One Size",
+        "price": 60,
+        "score": 8.9,
+        "profileTags": [
+            "Everyday",
+            "Leather"
+        ],
+        "availability": "Available",
+        "notes": "Holds 6 cards and cash.",
+        "tierPricing": [
+            {
+                "qty": 1,
+                "price": 60
+            }
+        ],
+        "documentationUrl": "#",
+        "imageUrl": "/placeholder-20.jpg",
+        "updatedAt": "2023-09-30T15:00:00Z"
+    }
+]
