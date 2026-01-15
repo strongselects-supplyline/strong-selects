@@ -74,10 +74,21 @@ TOTAL ESTIMATE: $${totalEstimate}
         // If API failed or not present, open mailto
         if (!apiSuccess) {
             const email = process.env.NEXT_PUBLIC_REQUEST_EMAIL || "info@strongselects.com";
-            const subject = `Order Request - ${formData.businessName}`;
+            const subject = encodeURIComponent(`Order Request - ${formData.businessName}`);
             const body = encodeURIComponent(summary);
-            window.open(`mailto:${email}?subject=${subject}&body=${body}`);
-            apiSuccess = true; // Assume success if mailto opened
+
+            // Use location.href instead of window.open for better compatibility
+            const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+
+            try {
+                window.location.href = mailtoLink;
+                apiSuccess = true;
+            } catch (err) {
+                console.error("Mailto failed:", err);
+                alert("Unable to open email client. Please email your request directly to " + email);
+                setIsSubmitting(false);
+                return;
+            }
         }
 
         setIsSubmitting(false);
