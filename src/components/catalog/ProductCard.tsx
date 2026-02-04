@@ -55,6 +55,7 @@ export function ProductCard({ product }: ProductCardProps) {
                         loading="lazy"
                         sizes="(max-width: 768px) 50vw, 25vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => { e.currentTarget.src = "/available_now_platinum.png"; }}
                     />
                 ) : (
                     <Image
@@ -110,7 +111,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 <div className="mt-auto pt-3">
                     <div className="grid grid-cols-3 gap-2 mb-3">
                         <div className="text-center">
-                            <div className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">Per Oz</div>
+                            <div className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">Single oz</div>
                             <div className="text-sm font-medium text-foreground">${product.price_oz || "--"}</div>
                         </div>
                         <div className="text-center">

@@ -127,6 +127,7 @@ export function CartDrawer() {
                                                     alt={item.product.strain_name}
                                                     fill
                                                     className="object-cover"
+                                                    onError={(e) => { e.currentTarget.src = "/available_now_platinum.png"; }}
                                                 />
                                             </div>
                                             <div className="flex-1">

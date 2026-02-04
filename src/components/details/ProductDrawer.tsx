@@ -87,6 +87,7 @@ export function ProductDrawer() {
                             alt={product.strain_name}
                             fill
                             className="object-cover"
+                            onError={(e) => { e.currentTarget.src = "/available_now_platinum.png"; }}
                         />
                     ) : (
                         <div className="flex items-center justify-center w-full h-full text-muted-foreground/20">NO IMAGE</div>
@@ -129,9 +130,9 @@ export function ProductDrawer() {
                                             "text-primary"
                             )}>
                                 {product.live_qty_g <= 0 ? "SOLD OUT" :
-                                    product.live_qty_g < 100 ? `LOW - ${product.live_qty_g}g` :
-                                        product.live_qty_g < 448 ? `LOW - ${product.live_qty_g}g` :
-                                            `IN STOCK - ${product.live_qty_g}g`
+                                    product.live_qty_g < 100 ? `LOW - ${product.live_qty_g}g (≈${(product.live_qty_g / 453.6).toFixed(1)} lb)` :
+                                        product.live_qty_g < 448 ? `LOW - ${product.live_qty_g}g (≈${(product.live_qty_g / 453.6).toFixed(1)} lb)` :
+                                            `IN STOCK - ${product.live_qty_g}g (≈${(product.live_qty_g / 453.6).toFixed(1)} lb)`
                                 }
                             </div>
                         </div>
@@ -171,10 +172,10 @@ export function ProductDrawer() {
 
                     {/* Pricing Table */}
                     <div>
-                        <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-3 block border-b border-border pb-2">Pricing Breakdown</h3>
+                        <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-3 block border-b border-border pb-2">Volume Pricing</h3>
                         <div className="grid grid-cols-3 gap-2">
                             <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "oz" ? "bg-primary/10 border-primary text-primary" : "bg-card border-border hover:bg-secondary")} onClick={() => setUnit("oz")}>
-                                <div className={cn("text-[10px] uppercase", unit === "oz" ? "text-primary/70" : "text-muted-foreground")}>Per Oz</div>
+                                <div className={cn("text-[10px] uppercase", unit === "oz" ? "text-primary/70" : "text-muted-foreground")}>Single oz</div>
                                 <div className="text-lg font-medium">${product.price_oz || "--"}</div>
                             </div>
                             <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "qp" ? "bg-primary/10 border-primary text-primary" : "bg-card border-border hover:bg-secondary")} onClick={() => setUnit("qp")}>
@@ -184,6 +185,7 @@ export function ProductDrawer() {
                             <div className={cn("p-3 rounded border text-center transition-colors cursor-pointer", unit === "lb" ? "bg-primary/10 border-primary text-primary" : "bg-card border-border hover:bg-secondary")} onClick={() => setUnit("lb")}>
                                 <div className={cn("text-[10px] uppercase", unit === "lb" ? "text-primary/70" : "text-muted-foreground")}>LB</div>
                                 <div className="text-lg font-medium">${product.price_lb || "--"}</div>
+                                {product.price_lb && <div className="text-[9px] text-muted-foreground mt-0.5">${(product.price_lb / 16).toFixed(0)}/oz</div>}
                             </div>
                         </div>
                     </div>
