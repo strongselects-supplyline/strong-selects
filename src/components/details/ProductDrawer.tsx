@@ -130,9 +130,9 @@ export function ProductDrawer() {
                                             "text-primary"
                             )}>
                                 {product.live_qty_g <= 0 ? "SOLD OUT" :
-                                    product.live_qty_g < 100 ? `LOW - ${product.live_qty_g}g (≈${(product.live_qty_g / 453.6).toFixed(1)} lb)` :
-                                        product.live_qty_g < 448 ? `LOW - ${product.live_qty_g}g (≈${(product.live_qty_g / 453.6).toFixed(1)} lb)` :
-                                            `IN STOCK - ${product.live_qty_g}g (≈${(product.live_qty_g / 453.6).toFixed(1)} lb)`
+                                    product.live_qty_g < 100 ? `LOW - ≈${(product.live_qty_g / 453.6).toFixed(1)} lb` :
+                                        product.live_qty_g < 448 ? `LOW - ≈${(product.live_qty_g / 453.6).toFixed(1)} lb` :
+                                            `IN STOCK - ≈${(product.live_qty_g / 453.6).toFixed(1)} lb`
                                 }
                             </div>
                         </div>
