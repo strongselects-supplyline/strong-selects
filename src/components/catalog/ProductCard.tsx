@@ -58,7 +58,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     />
                 ) : (
                     <Image
-                        src="/available_placeholder.png"
+                        src="/available_now_platinum.png"
                         alt="Available Now"
                         fill
                         className="object-cover"

@@ -123,7 +123,7 @@ export function CartDrawer() {
                                         <div key={`${item.product.strain_name}-${item.unit}`} className="flex gap-4">
                                             <div className="w-16 h-16 relative rounded overflow-hidden bg-secondary shrink-0">
                                                 <Image
-                                                    src={getDirectImageUrl(item.product.photo_url || item.product.media_photo_urls?.split(",")[0]) || "/available_placeholder.png"}
+                                                    src={getDirectImageUrl(item.product.photo_url || item.product.media_photo_urls?.split(",")[0]) || "/available_now_platinum.png"}
                                                     alt={item.product.strain_name}
                                                     fill
                                                     className="object-cover"
