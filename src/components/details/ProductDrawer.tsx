@@ -130,36 +130,44 @@ export function ProductDrawer() {
                             <div className="bg-secondary rounded-lg p-3 border border-border/50">
                                 <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Availability</div>
                                 <div className={cn(
-                                    "text-xl font-mono uppercase tracking-wider",
+                                    "text-lg sm:text-xl font-mono",
                                     product.live_qty_g <= 0 ? "text-red-500" :
                                         product.live_qty_g < 100 ? "text-orange-500" :
                                             product.live_qty_g < 448 ? "text-yellow-500" :
                                                 "text-primary"
                                 )}>
                                     {product.live_qty_g <= 0 ? "SOLD OUT" :
-                                        product.live_qty_g < 100 ? `LOW - ≈${(product.live_qty_g / 453.6).toFixed(1)} lb` :
-                                            product.live_qty_g < 448 ? `LOW - ≈${(product.live_qty_g / 453.6).toFixed(1)} lb` :
-                                                `IN STOCK - ≈${(product.live_qty_g / 453.6).toFixed(1)} lb`
+                                        product.live_qty_g < 448 ? (
+                                            <>
+                                                <span className="block">LOW</span>
+                                                <span className="text-sm opacity-70">≈{(product.live_qty_g / 453.6).toFixed(1)} lb</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span className="block">IN STOCK</span>
+                                                <span className="text-sm opacity-70">≈{(product.live_qty_g / 453.6).toFixed(1)} lb</span>
+                                            </>
+                                        )
                                     }
                                 </div>
                             </div>
                         </div>
 
-                        {/* Description */}
+                        {/* Description - only show sections with actual content */}
                         <div className="space-y-4">
-                            {product.lineage && (
+                            {product.lineage && product.lineage.trim() !== "" && product.lineage !== "—" && product.lineage !== "-" && (
                                 <div>
                                     <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Lineage</h3>
-                                    <p className="text-foreground/90 font-serif text-lg leading-relaxed">{product.lineage}</p>
+                                    <p className="text-foreground/90 font-serif text-base sm:text-lg leading-relaxed">{product.lineage}</p>
                                 </div>
                             )}
-                            {product.effects && (
+                            {product.effects && product.effects.trim() !== "" && product.effects !== "—" && product.effects !== "-" && (
                                 <div>
                                     <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Effects</h3>
                                     <p className="text-sm text-foreground/70">{product.effects}</p>
                                 </div>
                             )}
-                            {product.notes && (
+                            {product.notes && product.notes.trim() !== "" && product.notes !== "—" && product.notes !== "-" && (
                                 <div>
                                     <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Notes</h3>
                                     <p className="text-sm text-foreground/70 italic">{product.notes}</p>

@@ -66,33 +66,33 @@ export function ProductCard({ product }: ProductCardProps) {
                     />
                 )}
 
-                {/* Tier Badge */}
-                <div className="absolute top-2 left-2 px-2 py-1 rounded bg-black/60 backdrop-blur border border-white/10 text-[10px] font-bold tracking-wider text-white shadow-sm">
+                {/* Tier Badge - top left */}
+                <div className="absolute top-2 left-2 px-2 py-1 rounded bg-black/60 backdrop-blur border border-white/10 text-[10px] font-bold tracking-wider text-white shadow-sm z-10">
                     {product.tier}
                 </div>
 
-                {/* Status Badge - Only show for LOW/SOLD OUT */}
+                {/* Status Badge - bottom left to prevent overlap */}
                 {product.live_qty_g < 448 && (
                     <div className={cn(
-                        "absolute top-2 right-2 px-2 py-1 rounded text-[10px] font-bold tracking-wider shadow-sm",
+                        "absolute bottom-2 left-2 px-2 py-1 rounded text-[10px] font-bold tracking-wider shadow-sm z-10",
                         statusColor
                     )}>
                         {statusLabel}
                     </div>
                 )}
 
-                {/* 10% OFF Badge for Low Stock */}
+                {/* 10% OFF Badge - bottom right */}
                 {product.live_qty_g < 448 && product.live_qty_g > 0 && (
-                    <div className="absolute bottom-2 right-2 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-[11px] font-black tracking-wider shadow-lg animate-pulse">
+                    <div className="absolute bottom-2 right-2 px-2 py-1 rounded-full bg-primary text-primary-foreground text-[10px] font-bold tracking-wider shadow-lg animate-pulse z-10">
                         10% OFF
                     </div>
                 )}
             </div>
 
-            {/* Info Area */}
-            <div className="p-4 flex-1 flex flex-col">
-                <div className="flex justify-between items-start gap-2 mb-1">
-                    <h3 className="font-serif text-lg text-foreground leading-tight group-hover:text-primary transition-colors">{product.strain_name}</h3>
+            {/* Info Area - increased mobile padding */}
+            <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                <div className="flex justify-between items-start gap-1 sm:gap-2 mb-1">
+                    <h3 className="font-serif text-base sm:text-lg text-foreground leading-tight group-hover:text-primary transition-colors">{product.strain_name}</h3>
                     {product.type && (
                         <span className={cn(
                             "shrink-0 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border",
@@ -111,16 +111,16 @@ export function ProductCard({ product }: ProductCardProps) {
                 <div className="mt-auto pt-3">
                     <div className="grid grid-cols-3 gap-2 mb-3">
                         <div className="text-center">
-                            <div className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">Single oz</div>
-                            <div className="text-sm font-medium text-foreground">${product.price_oz || "--"}</div>
+                            <div className="text-[9px] sm:text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">oz</div>
+                            <div className="text-xs sm:text-sm font-medium text-foreground">${product.price_oz || "--"}</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">QP</div>
-                            <div className="text-sm font-medium text-foreground">${product.price_qp || "--"}</div>
+                            <div className="text-[9px] sm:text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">QP</div>
+                            <div className="text-xs sm:text-sm font-medium text-foreground">${product.price_qp || "--"}</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">LB</div>
-                            <div className="text-sm font-medium text-foreground">${product.price_lb || "--"}</div>
+                            <div className="text-[9px] sm:text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-0.5">LB</div>
+                            <div className="text-xs sm:text-sm font-medium text-foreground">${product.price_lb || "--"}</div>
                         </div>
                     </div>
 
